@@ -8,19 +8,15 @@ import {Routes, Route} from 'react-router-dom'
 function App() {
   const [userInput, setUserInput] = useState(null);
 
-  const getUserInput = (e, input) => {
-    e.preventDefault();
-    setUserInput(input)
-  };
-
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={ <Form handleSubmit={getUserInput} /> } />
+        <Route path='/' element={ <Form /> } />
+        <Route path='/:search' element={<ApiCall query={userInput} />} />
       </Routes>
       
-      <ApiCall query={ userInput }/>
-      <BookApiCall />
+      
+      {/* <BookApiCall /> */}
     </div>
   );
 }
