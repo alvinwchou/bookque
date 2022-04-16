@@ -2,12 +2,13 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Form from "./Form";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
-export default function ApiCall(props) {
+
+export default function VolumeApiCall() {
     const [bookResults, setBookResults] = useState([]);
 
-    const {search: query} = useParams()
+    const {title: query} = useParams();
     useEffect(() => {
         axios({
             url: `https://www.googleapis.com/books/v1/volumes`,
@@ -23,12 +24,15 @@ export default function ApiCall(props) {
         }).catch((err) => {
             console.log(err)
         })
-    }, [props])
+    }, [query])
 
     return (
         <div>
-            <h2>API CALL</h2>
-            {/* <Form /> */}
+            <Link to='/'>
+                <h2>API CALL</h2>
+            </Link>
+            <p>{decodeURIComponent(query)}</p>
+            <Form />
             <ul>
                 {
                     bookResults.map((bookResult) => {
@@ -36,7 +40,9 @@ export default function ApiCall(props) {
                         return (
                             <li key={bookResult.id}>
                                 <img src={bookResult.volumeInfo.imageLinks.thumbnail} alt={`Book cover of ${bookResult.volumeInfo.title}`} />
-                                <p>{bookResult.volumeInfo.title}</p>
+                                <Link to={`/book=${bookResult.id}`}>
+                                    <p>{bookResult.volumeInfo.title}</p>
+                                </Link>
                                 <p>{bookResult.volumeInfo.authors[0]}</p>
                                 <p>{bookResult.volumeInfo.publishedDate}</p>
                                 <p>{bookResult.volumeInfo.description}</p>

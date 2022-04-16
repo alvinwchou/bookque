@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Link } from 'react-router-dom';
 
-export default function Form(props) {
+export default function Form() {
     const [form, setFrom] = useState(null);
 
     const handleChange = (e) => {
@@ -22,10 +22,11 @@ export default function Form(props) {
                     onChange={ handleChange }
                     value={form}
                 />
-                {/* <button>Search</button> */}
                 <p>form state: {form}</p>
                 {/* Link decodes the url, work around for not is double encode */}
-                <Link to={`/${encodeURIComponent(encodeURIComponent(form))}`}><button>Link</button></Link>
+                <Link to={`/search=${encodeURIComponent(encodeURIComponent(form))}`}>
+                    <button>Link</button>
+                </Link>
             </form>
         </div>
     )
