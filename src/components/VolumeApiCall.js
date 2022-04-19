@@ -27,7 +27,7 @@ export default function VolumeApiCall() {
     }, [query])
 
     return (
-        <div>
+        <div className="volume">
             <Link to='/'>
                 <h2>API CALL</h2>
             </Link>
