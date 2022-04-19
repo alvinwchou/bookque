@@ -16,8 +16,6 @@ ul { list-style: none;}
 
 a { text-decoration: none;}
 
-/* a:visited { color: inherit} */
-
 /* app component */
 .App {
   min-height: 100vh;
@@ -79,4 +77,24 @@ form button {
 
 form img {
   height: 0.8rem;
+  filter: invert(100%) sepia(0%) saturate(7491%) hue-rotate(313deg) brightness(105%) contrast(103%);
+}
+
+/* volume api call component */
+.volume ul * {
+  border: 1px solid teal;
+}
+
+.volume li {
+  display: flex;
+  overflow: hidden;
+}
+
+.volume .textContainer .info {
+  display: flex;
+}
+
+.volume .textContainer > p:last-child {
+  color: red;
+  text-overflow: ellipsis;
 }

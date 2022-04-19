@@ -12,22 +12,22 @@ export default function Form() {
     }
 
     return (
-                <form>
-                    <label htmlFor="userInput" className="sr-only">Search books</label>
-                    <input
-                        type="text"
-                        name="userInput"
-                        id="userInput"
-                        placeholder="Search Books"
-                        onChange={ handleChange }
-                        value={form}
-                    />
-                    {/* Link decodes the url, work around for not is double encode */}
-                    <Link to={`/search=${encodeURIComponent(encodeURIComponent(form))}`}>
-                        <button className="imgContainer">
-                            <img src={magnifier} alt="search button" />
-                        </button>
-                    </Link>
-                </form>
+        <form>
+            <label htmlFor="userInput" className="sr-only">Search books</label>
+            <input
+                type="text"
+                name="userInput"
+                id="userInput"
+                placeholder="Search Books"
+                onChange={ handleChange }
+                value={form}
+            />
+            {/* Link decodes the url, work around for not is double encode */}
+            <Link to={`/search=${encodeURIComponent(encodeURIComponent(form))}`}>
+                <button className="imgContainer">
+                    <img src={magnifier} alt="search button" />
+                </button>
+            </Link>
+        </form>
     )
 }
