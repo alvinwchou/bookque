@@ -160,7 +160,19 @@ form img {
   margin-bottom: 2rem;
 }
 
-.volume .textContainer {
+.volume li .imgContainer {
+  width: 125px;
+}
+
+.noImage {
+  min-height: 195px;
+  border: 1px solid #757b80;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.volume li .textContainer {
   padding-left: 1rem;
 }
 
@@ -172,15 +184,15 @@ form img {
   overflow: hidden;
 }
 
-.volume li .info {
-  display: flex;
-  margin: 1rem 0;
-}
-
-.volume .textContainer > p:last-child {
+.volume li .textContainer > p:last-child {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.2;
 }
+
+  .volume li .info {
+    display: flex;
+    margin: 1rem 0;
+  }

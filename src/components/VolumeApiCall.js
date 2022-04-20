@@ -48,9 +48,14 @@ export default function VolumeApiCall() {
                         return (
                             <li key={bookResult.id}>
                                 <div className="imgContainer">
-                                    <Link to={`/book=${bookResult.id}`}>
-                                        <img src={bookResult.volumeInfo.imageLinks.thumbnail} alt={`Book cover of ${bookResult.volumeInfo.title}`} />
-                                    </Link>
+                                    {bookResult.volumeInfo.imageLinks
+                                        ? <Link to={`/book=${bookResult.id}`}>
+                                            <img src={bookResult.volumeInfo.imageLinks.thumbnail} alt={`Book cover of ${bookResult.volumeInfo.title}`} />
+                                        </Link>
+                                        : <div className="noImage">
+                                            <p>No image available</p>
+                                        </div>
+                                    }
                                 </div>
                                 <div className="textContainer">
                                     <div className="title">
@@ -65,18 +70,25 @@ export default function VolumeApiCall() {
                                         </Link>
                                     </div>
                                     <div className="info">
-                                        {bookResult.volumeInfo.authors.map((author, index) => {
-                                            return (
-                                                <p>
-                                                    {
-                                                        index === 0
-                                                        ? `${author}`
-                                                        : `, ${author} `
-                                                    }
-                                                </p>
-                                            )
-                                        })}
-                                        <p>&nbsp;· {bookResult.volumeInfo.publishedDate.substring(0, 4)}</p>
+                                        {bookResult.volumeInfo.authors
+                                            ? bookResult.volumeInfo.authors.map((author, index) => {
+                                                return (
+                                                    <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`}>
+                                                        {
+                                                            index === 0
+                                                            ? `${author}`
+                                                            : `, ${author} `
+                                                        }
+                                                    </Link>
+                                                )
+                                            })
+                                            : <p>No author available</p>
+                                        }
+                                        {bookResult.volumeInfo.publishedDate
+                                            ? <p>&nbsp;· {bookResult.volumeInfo.publishedDate.substring(0, 4)}</p>
+                                            : null
+                                        }
+                                        
                                     </div>
                                     <p>{bookResult.volumeInfo.description}</p>
                                 </div>
