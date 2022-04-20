@@ -1,8 +1,8 @@
 // Form.js
 
-import { useState } from "react"
+import { useState } from "react";
 import { Link } from 'react-router-dom';
-import magnifier from '../assets/magnifying-glass-solid.svg'
+import magnifier from '../assets/magnifying-glass-solid.svg';
 
 export default function Form() {
     const [form, setFrom] = useState(null);
