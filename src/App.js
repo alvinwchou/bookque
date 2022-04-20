@@ -1,5 +1,5 @@
 import './App.css';
-import Header from './components/Header';
+import Landing from './components/Landing';
 import VolumeApiCall from './components/VolumeApiCall';
 import BookApiCall from './components/BookApiCall';
 import {Routes, Route} from 'react-router-dom'
@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       
       <Routes>
-        <Route path='/' element={ <Header /> } />
+        <Route path='/' element={ <Landing /> } />
         <Route path='/search=:title' element={<VolumeApiCall />} />
         <Route path='/book=:bookId' element={<BookApiCall />} />
       </Routes>

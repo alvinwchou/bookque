@@ -28,27 +28,27 @@ a { text-decoration: none; color: #8ab4f8}
   justify-content: center;
 }
 
-/* header component */
-.header {
+/* landing component */
+.landing {
   width: 100%;
   max-width: 800px;
   text-align: center;
   margin-top: 30vh;
 }
 
-.header img {
+.landing img {
   width: 80%;
 }
 
-.header > p {
+.landing > p {
   padding-top: 0.5rem;
 }
 
-.header p {
+.landing p {
   margin: 0.5rem; 
 }
 
-.header a {
+.landing a {
   color: rgb(34, 48, 241);
 }
 
@@ -94,6 +94,7 @@ form img {
   display: flex;
   gap: 20px;
   padding: 1.5rem 0;
+  border-bottom: 1px solid #757b80;
 }
 
 .volume .top a {
@@ -150,6 +151,7 @@ form img {
 }
 
 .volume ul {
+  padding: 1.5rem 0;
   margin-left: 150px;
   margin-right: 92px;
   max-width: 1000px;
@@ -160,11 +162,8 @@ form img {
   margin-bottom: 2rem;
 }
 
-.volume li .imgContainer {
-  width: 125px;
-}
-
 .noImage {
+  width: 125px;
   min-height: 195px;
   border: 1px solid #757b80;
   display: flex;

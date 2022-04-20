@@ -19,7 +19,8 @@ export default function VolumeApiCall() {
             params: {
                 q: decodeURIComponent(query),
                 key: 'AIzaSyDoRrQbNko63UJtYicuNcl_iesA7acsBjI',
-                maxResults: 3,
+                // maxResults: 10,
+                // startIndex: 0,
                 printType: 'books'
             }
         }).then((results) => {
