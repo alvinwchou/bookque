@@ -81,8 +81,66 @@ form img {
 }
 
 /* volume api call component */
-.volume ul * {
+.volume {
+  width: 100%;
+}
+
+.volume .top {
+  display: flex;
+  gap: 20px;
+  padding: 1.5rem 0;
+}
+
+.volume .top a {
+  display: flex;
+  align-items: center;
+}
+
+.volume .top a:first-child {
+  width: 130px;
+  flex-shrink: 0;
+}
+
+.volume .top a:last-child {
+  margin-left: auto;
+}
+
+.volume .top a img {
+  width: 100%
+} 
+
+.volume form {
+  width: 1000px;
+}
+
+.volume form input {
+  /* border: none; */
+  width: 100%;
+}
+
+.volume form a {
+  width: 30px;
+  border: 1px solid red;
+  background-color: transparent;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* form button {
+  border: none;
+  background-color: rgb(34, 48, 241);
+}
+
+form img {
+  height: 0.8rem;
+  filter: invert(100%) sepia(0%) saturate(7491%) hue-rotate(313deg) brightness(105%) contrast(103%);
+} */
+
+.volume ul {
   border: 1px solid teal;
+  margin-left: 150px;
+  margin-right: 92px;
+  max-width: 1000px;
 }
 
 .volume li {
