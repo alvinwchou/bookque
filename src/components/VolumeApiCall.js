@@ -1,13 +1,8 @@
 // VolumeApiCall.js
 import { useState, useEffect } from "react"
 import axios from "axios"
-import Form from "./Form";
 import { useParams, Link } from "react-router-dom";
-import logo from '../assets/bookque-transparent.png';
-import library from '../assets/book-bookmark-solid.svg'
-
-
-
+import Header from './Header'
 
 export default function VolumeApiCall() {
     const [bookResults, setBookResults] = useState([]);
@@ -34,15 +29,7 @@ export default function VolumeApiCall() {
     return (
         <section className="volume">
             <div className="wrapper">
-                <div className="top">
-                    <Link to='/'>
-                        <img src={logo} alt="bookque logo" />
-                    </Link>
-                    <Form />
-                    <Link to='/'>
-                        <img src={library} alt="My library button" />
-                    </Link>
-                </div>
+                <Header />
                 <ul>
                     {bookResults.map((bookResult) => {
                         console.log(bookResult);

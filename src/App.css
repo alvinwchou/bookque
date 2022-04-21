@@ -82,49 +82,42 @@ form img {
   filter: invert(100%) sepia(0%) saturate(7491%) hue-rotate(313deg) brightness(105%) contrast(103%);
 }
 
-/* volume api call component */
-.volume {
-  width: 100%;
-  min-height: 100vh;
-  background-color: #202124;
-  color: #e8eaed;
-}
-
-.volume .top {
+/* header component */
+.header {
   display: flex;
   gap: 20px;
   padding: 1.5rem 0;
   border-bottom: 1px solid #757b80;
 }
 
-.volume .top a {
+.header a {
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
 
-.volume .top a:first-child {
+.header a:first-child {
   width: 130px;
 }
 
-.volume .top a:last-child {
+.header a:last-child {
   margin-left: auto;
 }
 
-.volume .top a > img {
+.header a > img {
   width: 100%;
   filter: invert(100%) sepia(0%) saturate(25%) hue-rotate(70deg) brightness(108%) contrast(108%);
   min-height: 1.5rem;
-} 
+}
 
-.volume form {
+.header form {
   width: 1000px;
   background-color: #303134;
   border-radius: 15px;
   padding: 0 0.5rem;
 }
 
-.volume form input {
+.header form input {
   border: none;
   width: 100%;
   background-color: transparent;
@@ -132,7 +125,7 @@ form img {
   padding-left: 0;
 }
 
-.volume form a {
+.header form a {
   width: 30px;
   border: 1px solid transparent;
   background-color: transparent;
@@ -141,13 +134,21 @@ form img {
   border-left: 1px solid #757b80;
 }
 
-.volume form button {
+.header form button {
   background-color: transparent;
   margin: 0 auto;
 }
 
-.volume form img {
+.header form img {
   filter: invert(67%) sepia(31%) saturate(795%) hue-rotate(186deg) brightness(100%) contrast(95%);
+}
+
+/* volume api call component */
+.volume {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #202124;
+  color: #e8eaed;
 }
 
 .volume ul {

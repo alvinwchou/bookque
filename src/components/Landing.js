@@ -1,4 +1,4 @@
-// Header.js
+// Landing.js
 import logo from '../assets/bookque-transparent.png';
 import Form from './Form';
 import { Link } from 'react-router-dom';
