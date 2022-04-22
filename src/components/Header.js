@@ -7,13 +7,17 @@ import library from '../assets/book-bookmark-solid.svg';
 export default function Header() {
     return (
         <div className="header">
-            <Link to='/'>
-                <img src={logo} alt="bookque logo" />
-            </Link>
+            <div className="logo">
+                <Link to='/'>
+                    <img src={logo} alt="bookque logo" />
+                </Link>
+            </div>
             <Form />
-            <Link to='/'>
-                <img src={library} alt="My library button" />
-            </Link>
+            <div className="myLibrary">
+                <Link to='/'>
+                    <img src={library} alt="My library button" />
+                </Link>
+            </div>
         </div>
     )
 }

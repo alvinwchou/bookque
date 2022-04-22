@@ -96,18 +96,22 @@ form img {
   flex-shrink: 0;
 }
 
-.header a:first-child {
+.header .logo img{
   width: 130px;
 }
 
-.header a:last-child {
+.header .myLibrary {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.header .myLibrary img {
+  height: 1.5rem;
 }
 
 .header a > img {
-  width: 100%;
   filter: invert(100%) sepia(0%) saturate(25%) hue-rotate(70deg) brightness(108%) contrast(108%);
-  min-height: 1.5rem;
 }
 
 .header form {
@@ -196,3 +200,37 @@ form img {
     display: flex;
     margin: 1rem 0;
   }
+
+/* book api call component */
+.book {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #202124;
+  color: #e8eaed;
+}
+
+.book .overview {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.book .overview img {
+  float: right;
+}
+
+.book .overview .textContainer {
+  clear:right
+}
+.book .header {
+  justify-content: space-between;
+}
+
+.book .header .logo,
+.book .header .myLibrary {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.book .myLibrary a{
+  margin-left: auto;
+}

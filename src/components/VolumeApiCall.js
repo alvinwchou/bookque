@@ -5,7 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import Header from './Header'
 
 export default function VolumeApiCall() {
-    const [bookResults, setBookResults] = useState([]);
+    const [volumeResults, setVolumeResults] = useState([]);
 
     const {title: query} = useParams();
     useEffect(() => {
@@ -20,7 +20,7 @@ export default function VolumeApiCall() {
             }
         }).then((results) => {
             console.log(results);
-            setBookResults(results.data.items)
+            setVolumeResults(results.data.items)
         }).catch((err) => {
             console.log(err)
         })
@@ -31,14 +31,14 @@ export default function VolumeApiCall() {
             <div className="wrapper">
                 <Header />
                 <ul>
-                    {bookResults.map((bookResult) => {
-                        console.log(bookResult);
+                    {volumeResults.map((volumeResult) => {
+                        console.log(volumeResult);
                         return (
-                            <li key={bookResult.id}>
+                            <li key={volumeResult.id}>
                                 <div className="imgContainer">
-                                    {bookResult.volumeInfo.imageLinks
-                                        ? <Link to={`/book=${bookResult.id}`}>
-                                            <img src={bookResult.volumeInfo.imageLinks.thumbnail} alt={`Book cover of ${bookResult.volumeInfo.title}`} />
+                                    {volumeResult.volumeInfo.imageLinks
+                                        ? <Link to={`/book=${volumeResult.id}`}>
+                                            <img src={volumeResult.volumeInfo.imageLinks.thumbnail} alt={`Book cover of ${volumeResult.volumeInfo.title}`} />
                                         </Link>
                                         : <div className="noImage">
                                             <p>No image available</p>
@@ -47,38 +47,38 @@ export default function VolumeApiCall() {
                                 </div>
                                 <div className="textContainer">
                                     <div className="title">
-                                        <Link to={`/book=${bookResult.id}`}>
+                                        <Link to={`/book=${volumeResult.id}`}>
                                             <h2>
-                                                {bookResult.volumeInfo.title}
-                                                {bookResult.volumeInfo.subtitle
-                                                    ? `: ${bookResult.volumeInfo.subtitle}`
+                                                {volumeResult.volumeInfo.title}
+                                                {volumeResult.volumeInfo.subtitle
+                                                    ? `: ${volumeResult.volumeInfo.subtitle}`
                                                     : null
                                                 }
                                             </h2>
                                         </Link>
                                     </div>
                                     <div className="info">
-                                        {bookResult.volumeInfo.authors
-                                            ? bookResult.volumeInfo.authors.map((author, index) => {
+                                        {volumeResult.volumeInfo.authors
+                                            ? volumeResult.volumeInfo.authors.map((author, index) => {
                                                 return (
                                                     <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`}>
                                                         {
                                                             index === 0
-                                                            ? `${author}`
-                                                            : `, ${author} `
+                                                            ? author
+                                                            : `, ${author}`
                                                         }
                                                     </Link>
                                                 )
                                             })
                                             : <p>No author available</p>
                                         }
-                                        {bookResult.volumeInfo.publishedDate
-                                            ? <p>&nbsp;· {bookResult.volumeInfo.publishedDate.substring(0, 4)}</p>
+                                        {volumeResult.volumeInfo.publishedDate
+                                            ? <p>&nbsp;· {volumeResult.volumeInfo.publishedDate.substring(0, 4)}</p>
                                             : null
                                         }
                                         
                                     </div>
-                                    <p>{bookResult.volumeInfo.description}</p>
+                                    <p>{volumeResult.volumeInfo.description}</p>
                                 </div>
                             </li>
                         )
