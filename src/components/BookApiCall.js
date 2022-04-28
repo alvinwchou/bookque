@@ -3,10 +3,12 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { useParams, Link } from "react-router-dom";
 import Header from "./Header";
+import firebase from "./firebase";
+import { getDatabase, ref, set } from 'firebase/database'
 
 
 export default function BookApiCall() {
-    const [bookResults, setBookResults] = useState([])
+    const [bookResults, setBookResults] = useState([]);
 
     const {bookId: book_Id} = useParams();
 
@@ -22,6 +24,19 @@ export default function BookApiCall() {
             setBookResults(results.data.volumeInfo)
         })
     },[book_Id])
+
+    const handleClick = () => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `${book_Id}`);
+
+        const myLibraryData = {
+            id: book_Id,
+            title: bookResults.title,
+            image: bookResults.imageLinks.thumbnail,
+        };
+
+        set(dbRef, myLibraryData)
+    };
 
     return (
         <div className="book">
@@ -54,7 +69,7 @@ export default function BookApiCall() {
                             : null
                         }
                         </p>
-                        <p>Add to my library</p>
+                        <button onClick={handleClick}>Add to my library</button>
                         <div className="textContainer">
                             <p>ISBN: 
                                 {bookResults.industryIdentifiers // check if there are ISBN numbers

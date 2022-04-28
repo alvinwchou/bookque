@@ -36,7 +36,7 @@ export default function VolumeApiCall() {
                         return (
                             <li key={volumeResult.id}>
                                 <div className="imgContainer">
-                                    {volumeResult.volumeInfo.imageLinks
+                                    {volumeResult.volumeInfo.imageLinks // check for image
                                         ? <Link to={`/book=${volumeResult.id}`}>
                                             <img src={volumeResult.volumeInfo.imageLinks.thumbnail} alt={`Book cover of ${volumeResult.volumeInfo.title}`} />
                                         </Link>
@@ -50,7 +50,7 @@ export default function VolumeApiCall() {
                                         <Link to={`/book=${volumeResult.id}`}>
                                             <h2>
                                                 {volumeResult.volumeInfo.title}
-                                                {volumeResult.volumeInfo.subtitle
+                                                {volumeResult.volumeInfo.subtitle // check for subtitle
                                                     ? `: ${volumeResult.volumeInfo.subtitle}`
                                                     : null
                                                 }
@@ -58,7 +58,7 @@ export default function VolumeApiCall() {
                                         </Link>
                                     </div>
                                     <div className="info">
-                                        {volumeResult.volumeInfo.authors
+                                        {volumeResult.volumeInfo.authors // check for authors
                                             ? volumeResult.volumeInfo.authors.map((author, index) => {
                                                 return (
                                                     <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`}>
@@ -72,7 +72,7 @@ export default function VolumeApiCall() {
                                             })
                                             : <p>No author available</p>
                                         }
-                                        {volumeResult.volumeInfo.publishedDate
+                                        {volumeResult.volumeInfo.publishedDate // check if there is a published date, if so show the year
                                             ? <p>&nbsp;· {volumeResult.volumeInfo.publishedDate.substring(0, 4)}</p>
                                             : null
                                         }

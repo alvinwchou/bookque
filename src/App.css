@@ -16,6 +16,11 @@ ul { list-style: none;}
 
 a { text-decoration: none; /* darkmode color: #8ab4f8 */}
 
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
 .wrapper {
   max-width: 95%;
   margin: 0 auto;
@@ -173,7 +178,7 @@ form img {
   margin-bottom: 2rem;
 }
 
-.volume img {
+.volume .imgeContainer img {
   border: 1px solid #757b80;
 }
 
