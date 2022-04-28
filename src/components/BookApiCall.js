@@ -69,7 +69,7 @@ export default function BookApiCall() {
                             : null
                         }
                         </p>
-                        <button onClick={handleClick}>Add to my library</button>
+                        <button onClick={handleClick}><span className="addBlue">+</span> Add to my library</button>
                         <div className="textContainer">
                             <p>ISBN: 
                                 {bookResults.industryIdentifiers // check if there are ISBN numbers
@@ -81,6 +81,7 @@ export default function BookApiCall() {
                                     : ' Unavailable'
                                 }
                             </p>
+                            <p>Category: {bookResults.categories[0]}</p>
                             <p>Page count: {bookResults.pageCount ? bookResults.pageCount : 'Unavailable'}</p>
                             <p>{bookResults.description}</p>
                         </div>

@@ -225,6 +225,20 @@ form img {
   color: #e8eaed; */
 }
 
+.book .header {
+  justify-content: space-between;
+}
+
+.book .header .logo,
+.book .header .myLibrary {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.book .myLibrary a {
+  margin-left: auto;
+}
+
 .book .overview {
   width: 1000px;
   margin: 0 auto;
@@ -254,16 +268,21 @@ form img {
   line-height: 1.5rem;
 }
 
-.book .header {
-  justify-content: space-between;
+.book .overview button {
+  background-color: transparent;
+  border: 1px solid #757b80;
+  border-radius: 15px;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
 }
 
-.book .header .logo,
-.book .header .myLibrary {
-  flex-grow: 1;
-  flex-basis: 0;
+.book .overview button:hover,
+.book .overview button:focus {
+  text-decoration: underline;
 }
 
-.book .myLibrary a{
-  margin-left: auto;
+.addBlue {
+  color:rgb(34, 48, 241);
+  font-weight: 700;
 }
