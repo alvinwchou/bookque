@@ -14,7 +14,7 @@ html { font-size: 125%;}
 
 ul { list-style: none;}
 
-a { text-decoration: none; color: #8ab4f8}
+a { text-decoration: none; /* darkmode color: #8ab4f8 */}
 
 .wrapper {
   max-width: 95%;
@@ -110,13 +110,15 @@ form img {
   height: 1.5rem;
 }
 
+/* darkmode
 .header a > img {
   filter: invert(100%) sepia(0%) saturate(25%) hue-rotate(70deg) brightness(108%) contrast(108%);
-}
+} */
 
 .header form {
   width: 1000px;
-  background-color: #303134;
+  /* background-color: #303134; darkmode */ 
+  border: 1px solid #757b80;
   border-radius: 15px;
   padding: 0 0.5rem;
 }
@@ -124,8 +126,9 @@ form img {
 .header form input {
   border: none;
   width: 100%;
+  /* darkmode
   background-color: transparent;
-  color: #e8eaed;
+  color: #e8eaed; */
   padding-left: 0;
 }
 
@@ -144,15 +147,18 @@ form img {
 }
 
 .header form img {
-  filter: invert(67%) sepia(31%) saturate(795%) hue-rotate(186deg) brightness(100%) contrast(95%);
+  /* darkmode
+  filter: invert(67%) sepia(31%) saturate(795%) hue-rotate(186deg) brightness(100%) contrast(95%); */
+  filter: invert(18%) sepia(99%) saturate(7042%) hue-rotate(243deg) brightness(94%) contrast(102%);
 }
 
 /* volume api call component */
 .volume {
   width: 100%;
   min-height: 100vh;
+  /* darkmode
   background-color: #202124;
-  color: #e8eaed;
+  color: #e8eaed; */
 }
 
 .volume ul {
@@ -165,6 +171,10 @@ form img {
 .volume li {
   display: flex;
   margin-bottom: 2rem;
+}
+
+.volume img {
+  border: 1px solid #757b80;
 }
 
 .noImage {
@@ -182,14 +192,14 @@ form img {
 
 .volume h2 {
   font-weight: 400;
-  display: -webkit-box;
+  display: -webkit-box; /* limit to only show 2 lines of text */
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .volume li .textContainer > p:last-child {
-  display: -webkit-box;
+  display: -webkit-box; /* limit to only show 2 lines of text */
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -205,22 +215,40 @@ form img {
 .book {
   width: 100%;
   min-height: 100vh;
+  /* darkmode
   background-color: #202124;
-  color: #e8eaed;
+  color: #e8eaed; */
 }
 
 .book .overview {
   width: 1000px;
   margin: 0 auto;
+  padding: 1.5rem 0;
 }
 
-.book .overview img {
+.book .overview > p {
+  line-height: 2rem;
+}
+
+.book .overview img, 
+.book .overview .noImage {
   float: right;
+  margin-bottom: 1.5rem;
+  border: 1px solid #757b80;
 }
 
 .book .overview .textContainer {
-  clear:right
+  clear: right;
+  border: 1px solid #757b80;
+  border-radius: 15px;
+  padding: 1rem;
 }
+
+.book .overview .textContainer p {
+  padding-bottom: 0.5rem;
+  line-height: 1.5rem;
+}
+
 .book .header {
   justify-content: space-between;
 }

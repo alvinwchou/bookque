@@ -27,33 +27,46 @@ export default function BookApiCall() {
         <div className="book">
             <div className="wrapper">
                 <Header />
-                <p>Book ID: {book_Id}</p>
                 {bookResults.title
                     ? <div className="overview">
-                                <img src={bookResults.imageLinks.thumbnail} alt={`Book cover of ${bookResults.title}`} />
-                                <h2>{bookResults.title}</h2>
-                                <h3>{bookResults.subtitle}</h3>
-                                <p>by {bookResults.authors.map((author, index) => {
-                                    return (
-                                        <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`}>
-                                            {
-                                                index === 0
-                                                    ? author 
-                                                    : `, ${author}`
-                                            }
-                                        </Link>
-                                    )
-                                })}
-                                &nbsp;· {bookResults.publishedDate.substring(0, 4)}
-                                </p>
-                                <p>Add to my library</p>
+                        {bookResults.imageLinks // check if there is an image
+                            ? <img src={bookResults.imageLinks.thumbnail} alt={`Book cover of ${bookResults.title}`} />
+                            : <div className="noImage">
+                                <p>No image available</p>
+                            </div>
+                        }
+                        <h2>{bookResults.title}</h2>
+                        <h3>{bookResults.subtitle}</h3>
+                        <p>by {bookResults.authors.map((author, index) => {
+                            return (
+                                <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`}>
+                                    {
+                                        index === 0
+                                            ? author 
+                                            : `, ${author}`
+                                    }
+                                </Link>
+                            )
+                        })}
+                        &nbsp;· 
+                        {bookResults.publishedDate // check if there is a published date and take only the year
+                            ? bookResults.publishedDate.substring(0, 4)
+                            : null
+                        }
+                        </p>
+                        <p>Add to my library</p>
                         <div className="textContainer">
-                            <p>ISBN: {bookResults.industryIdentifiers.map((eachIdentifier) => {
-                                return (
-                                    `${eachIdentifier.identifier} `
-                                )
-                            })}</p>
-                            <p>Page count: {bookResults.pageCount}</p>
+                            <p>ISBN: 
+                                {bookResults.industryIdentifiers // check if there are ISBN numbers
+                                    ? bookResults.industryIdentifiers.map((eachIdentifier) => {
+                                        return (
+                                            `${eachIdentifier.identifier} `
+                                        )
+                                    })
+                                    : ' Unavailable'
+                                }
+                            </p>
+                            <p>Page count: {bookResults.pageCount ? bookResults.pageCount : 'Unavailable'}</p>
                             <p>{bookResults.description}</p>
                         </div>
 
