@@ -14,7 +14,7 @@ export default function Header() {
             </div>
             <Form />
             <div className="myLibrary">
-                <Link to='/'>
+                <Link to='/myLibrary'>
                     <img src={library} alt="My library button" />
                 </Link>
             </div>

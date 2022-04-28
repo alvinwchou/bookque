@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { useParams, Link } from "react-router-dom";
 import Header from "./Header";
-import firebase from "./firebase";
+import firebase from "../firebase";
 import { getDatabase, ref, set } from 'firebase/database'
 
 
@@ -33,6 +33,7 @@ export default function BookApiCall() {
             id: book_Id,
             title: bookResults.title,
             image: bookResults.imageLinks.thumbnail,
+            authors: bookResults.authors,
         };
 
         set(dbRef, myLibraryData)
@@ -63,12 +64,10 @@ export default function BookApiCall() {
                                 </Link>
                             )
                         })}
-                        &nbsp;· 
-                        {bookResults.publishedDate // check if there is a published date and take only the year
+                        &nbsp;· {bookResults.publishedDate // check if there is a published date and take only the year
                             ? bookResults.publishedDate.substring(0, 4)
                             : null
-                        }
-                        </p>
+                        }</p>
                         <button onClick={handleClick}><span className="addBlue">+</span> Add to my library</button>
                         <div className="textContainer">
                             <p>ISBN: 

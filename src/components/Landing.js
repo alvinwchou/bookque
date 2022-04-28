@@ -9,7 +9,7 @@ export default function Landing() {
             <img src={logo} alt="bookque logo" />
             <Form />
             <p>Search based on Google Books APIs</p>
-            <Link to='/'>
+            <Link to='/myLibrary'>
                 <p>My Library</p>
             </Link>
         </div>
