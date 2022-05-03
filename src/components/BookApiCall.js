@@ -25,19 +25,26 @@ export default function BookApiCall() {
         })
     },[book_Id])
 
-    const handleClick = () => {
+    const handleClick = (e) => {
         const database = getDatabase(firebase);
         const dbRef = ref(database, `${book_Id}`);
 
         const myLibraryData = {
-            id: book_Id,
-            title: bookResults.title,
-            image: bookResults.imageLinks.thumbnail,
-            authors: bookResults.authors,
+            [e.target.value]: {
+                id: book_Id,
+                title: bookResults.title,
+                image: bookResults.imageLinks.thumbnail,
+                authors: bookResults.authors,
+            }
         };
 
         set(dbRef, myLibraryData)
+        console.log(e.target.value);
     };
+
+    const handleAddLibraryClick = () => {
+
+    }
 
     return (
         <div className="book">
@@ -56,10 +63,9 @@ export default function BookApiCall() {
                         <p>by {bookResults.authors.map((author, index) => {
                             return (
                                 <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`}>
-                                    {
-                                        index === 0
-                                            ? author 
-                                            : `, ${author}`
+                                    {index === 0
+                                        ? author 
+                                        : `, ${author}`
                                     }
                                 </Link>
                             )
@@ -68,7 +74,12 @@ export default function BookApiCall() {
                             ? bookResults.publishedDate.substring(0, 4)
                             : null
                         }</p>
-                        <button onClick={handleClick}><span className="addBlue">+</span> Add to my library</button>
+                        <button onClick={handleAddLibraryClick}><span className="addBlue">+</span> Add to my library</button>
+                        <div>
+                            <button value="toRead" onClick={handleClick}>Add to read</button>
+                            <button value="fav"onClick={handleClick}>Add to fav</button>
+                            <button value="haveRead"onClick={handleClick}>Add to have read</button>
+                        </div>
                         <div className="textContainer">
                             <p>ISBN: 
                                 {bookResults.industryIdentifiers // check if there are ISBN numbers
@@ -80,7 +91,7 @@ export default function BookApiCall() {
                                     : ' Unavailable'
                                 }
                             </p>
-                            <p>Category: {bookResults.categories[0]}</p>
+                            <p>Category: {bookResults.categories ? bookResults.categories[0] : 'Unavailable'}</p>
                             <p>Page count: {bookResults.pageCount ? bookResults.pageCount : 'Unavailable'}</p>
                             <p>{bookResults.description}</p>
                         </div>

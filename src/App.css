@@ -21,6 +21,16 @@ a:focus {
   text-decoration: underline;
 }
 
+.volume,
+.book,
+.myLibrary {
+  width: 100%;
+  min-height: 100vh;
+  /* darkmode
+  background-color: #202124;
+  color: #e8eaed; */
+}
+
 .wrapper {
   max-width: 95%;
   margin: 0 auto;
@@ -105,13 +115,13 @@ form img {
   width: 130px;
 }
 
-.header .myLibrary {
+.header .libraryImgContainer {
   margin-left: auto;
   display: flex;
   align-items: center;
 }
 
-.header .myLibrary img {
+.header .libraryImgContainer img {
   height: 1.5rem;
 }
 
@@ -158,14 +168,6 @@ form img {
 }
 
 /* volume api call component */
-.volume {
-  width: 100%;
-  min-height: 100vh;
-  /* darkmode
-  background-color: #202124;
-  color: #e8eaed; */
-}
-
 .volume ul {
   padding: 1.5rem 0;
   margin-left: 150px;
@@ -217,25 +219,17 @@ form img {
   }
 
 /* book api call component */
-.book {
-  width: 100%;
-  min-height: 100vh;
-  /* darkmode
-  background-color: #202124;
-  color: #e8eaed; */
-}
-
 .book .header {
   justify-content: space-between;
 }
 
 .book .header .logo,
-.book .header .myLibrary {
+.book .header .libraryImgContainer {
   flex-grow: 1;
   flex-basis: 0;
 }
 
-.book .myLibrary a {
+.book .libraryImgContainer a {
   margin-left: auto;
 }
 
@@ -285,4 +279,30 @@ form img {
 .addBlue {
   color:rgb(34, 48, 241);
   font-weight: 700;
+}
+
+/* my library */
+.myLibrary ul {
+  /* display: flex; */
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  border: 1px solid black;
+  margin: 1.5rem 0;
+  gap: 30px;
+}
+
+.bookCard {
+  border: 1px dotted red;
+  width: 200px;
+  display: inline-block;
+}
+
+.bookCard img {
+  width: 100%;
+}
+
+.bookCard p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
