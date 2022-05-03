@@ -3,6 +3,7 @@
 import { getDatabase, onValue, ref } from "firebase/database";
 import { useEffect, useState } from "react"
 import firebase from "../firebase";
+import BookList from "./BookList";
 import Header from "./Header";
 
 export default function MyLibrary() {
@@ -21,7 +22,6 @@ export default function MyLibrary() {
             // I think I can use .filter() here
             for (let key in data) {
                 if (data[key].toRead) {
-                    console.log('toRead');
                     toReadList.push(data[key].toRead)
                 } else if (data[key].fav) {
                     favList.push(data[key].fav)
@@ -49,21 +49,9 @@ export default function MyLibrary() {
                 <ul>
                     <p>to Read</p>
                     {myBooks.toRead
-                        ? myBooks.toRead.map((book) => {
+                        ? myBooks.toRead.map((eachBook) => {
                             return (
-                                <li key={book.id} className="bookCard">
-                                    <div className="imgContainer">
-                                        <img src={book.image} alt={`Book cover of ${book.title}`} />
-                                    </div>
-                                    <p>{book.title}</p>
-                                    <p>{book.authors.map((author, index) => {
-                                        return(
-                                            index === 0
-                                            ? author
-                                            : `, ${author}`
-                                        )
-                                    })}</p>
-                                </li>
+                                <BookList book={eachBook} />
                             )
                         })
                         : null
@@ -73,21 +61,9 @@ export default function MyLibrary() {
                 <ul>
                     <p>fav</p>
                     {myBooks.fav
-                        ? myBooks.fav.map((book) => {
+                        ? myBooks.fav.map((eachBook) => {
                             return (
-                                <li key={book.id} className="bookCard">
-                                    <div className="imgContainer">
-                                        <img src={book.image} alt={`Book cover of ${book.title}`} />
-                                    </div>
-                                    <p>{book.title}</p>
-                                    <p>{book.authors.map((author, index) => {
-                                        return(
-                                            index === 0
-                                            ? author
-                                            : `, ${author}`
-                                        )
-                                    })}</p>
-                                </li>
+                                <BookList book={eachBook} />
                             )
                         })
                         : null
@@ -97,21 +73,9 @@ export default function MyLibrary() {
                 <ul>
                     <p>have read</p>
                     {myBooks.haveRead
-                        ? myBooks.haveRead.map((book) => {
+                        ? myBooks.haveRead.map((eachBook) => {
                             return (
-                                <li key={book.id} className="bookCard">
-                                    <div className="imgContainer">
-                                        <img src={book.image} alt={`Book cover of ${book.title}`} />
-                                    </div>
-                                    <p>{book.title}</p>
-                                    <p>{book.authors.map((author, index) => {
-                                        return(
-                                            index === 0
-                                            ? author
-                                            : `, ${author}`
-                                        )
-                                    })}</p>
-                                </li>
+                                <BookList book={eachBook} />
                             )
                         })
                         : null
