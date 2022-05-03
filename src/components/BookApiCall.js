@@ -9,15 +9,13 @@ import { getDatabase, ref, set } from 'firebase/database'
 
 export default function BookApiCall() {
     const [bookResults, setBookResults] = useState([]);
+    const [showLibraryOptions, setShowLibraryOptions] = useState(false)
 
     const {bookId: book_Id} = useParams();
 
     useEffect(() => {
         axios({
-            url: `https://www.googleapis.com/books/v1/volumes/${book_Id}`,
-            // params: {
-            //     key: 'AIzaSyDoRrQbNko63UJtYicuNcl_iesA7acsBjI',
-            // }
+            url: `https://www.googleapis.com/books/v1/volumes/${book_Id}`
         }).then((results) => {
             console.log(results);
             console.log(results.data.volumeInfo);
@@ -39,11 +37,10 @@ export default function BookApiCall() {
         };
 
         set(dbRef, myLibraryData)
-        console.log(e.target.value);
     };
 
     const handleAddLibraryClick = () => {
-
+        setShowLibraryOptions(!showLibraryOptions)
     }
 
     return (
@@ -74,12 +71,17 @@ export default function BookApiCall() {
                             ? bookResults.publishedDate.substring(0, 4)
                             : null
                         }</p>
-                        <button onClick={handleAddLibraryClick}><span className="addBlue">+</span> Add to my library</button>
-                        <div>
-                            <button value="toRead" onClick={handleClick}>Add to read</button>
-                            <button value="fav"onClick={handleClick}>Add to fav</button>
-                            <button value="haveRead"onClick={handleClick}>Add to have read</button>
-                        </div>
+
+
+                        {showLibraryOptions
+                            ? <div>
+                                <button value="toRead" onClick={handleClick}><span className="addBlue">+</span> Add to read</button>
+                                <button value="fav" onClick={handleClick}><span className="addBlue">+</span> Add to fav</button>
+                                <button value="haveRead" onClick={handleClick}><span className="addBlue">+</span> Add to have read</button>
+                            </div>
+                            : <button onClick={handleAddLibraryClick}><span className="addBlue">+</span> Add to my library</button>
+                        }
+                        
                         <div className="textContainer">
                             <p>ISBN: 
                                 {bookResults.industryIdentifiers // check if there are ISBN numbers
