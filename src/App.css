@@ -302,6 +302,26 @@ form img {
   padding: 5px;
 }
 
+.bookList .options {
+  position: relative;
+}
+
+.bookList .options:hover .optionsDropdown{
+  height: auto;
+}
+
+.bookList .optionsDropdown {
+  background-color: #000;
+  min-height: auto;
+  border: none;
+  /* height: 0; */
+  overflow: hidden;
+  position: absolute;
+  display: block;
+  margin: 0;
+  width: 100%;
+}
+
 .bookList .imgContainer {
   display: flex;
 }

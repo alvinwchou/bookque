@@ -10,19 +10,22 @@ export default function BookList({ book, label }) {
     return (
         <li className="bookList">
             <div className="options">
-                {label === 'toRead'
-                    ? null
-                    : <button value="toRead" onClick={handleClick}>Move to read</button>
-                }
-                {label === 'fav'
-                    ? null
-                    : <button value="fav" onClick={handleClick}>Move to favourites</button>
-                }
-                {label === 'haveRead'
-                    ? null
-                    : <button value="haveRead" onClick={handleClick}>Move to have read</button>
-                }
-                <button value="remove" onClick={handleClick}>Remove</button>
+                <p className="addBlue">&#x25BC;</p>
+                <ul className="optionsDropdown">
+                    {label === 'toRead'
+                        ? null
+                        : <li><button value="toRead" onClick={handleClick}>Move to read</button></li>
+                    }
+                    {label === 'fav'
+                        ? null
+                        : <li><button value="fav" onClick={handleClick}>Move to favourites</button></li>
+                    }
+                    {label === 'haveRead'
+                        ? null
+                        : <li><button value="haveRead" onClick={handleClick}>Move to have read</button></li>
+                    }
+                    <li><button value="remove" onClick={handleClick}>Remove</button></li>
+                </ul>
             </div>
 
             <div className="bookInfo">
