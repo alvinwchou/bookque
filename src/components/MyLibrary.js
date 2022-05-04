@@ -46,42 +46,41 @@ export default function MyLibrary() {
             <div className="wrapper">
                 <Header />
                 <h2>My Library</h2>
+                <h3>To read</h3>
                 <ul>
-                    <p>to Read</p>
                     {myBooks.toRead
                         ? myBooks.toRead.map((eachBook) => {
                             return (
-                                <BookList book={eachBook} />
+                                <BookList book={eachBook} label='toRead'/>
                             )
                         })
                         : null
                     }
                 </ul>
 
+                <h3>Favourites</h3>
                 <ul>
-                    <p>fav</p>
                     {myBooks.fav
                         ? myBooks.fav.map((eachBook) => {
                             return (
-                                <BookList book={eachBook} />
+                                <BookList book={eachBook} label='fav'/>
                             )
                         })
                         : null
                     }
                 </ul>
 
+                <h3>Have read</h3>
                 <ul>
-                    <p>have read</p>
                     {myBooks.haveRead
                         ? myBooks.haveRead.map((eachBook) => {
                             return (
-                                <BookList book={eachBook} />
+                                <BookList book={eachBook} label='haveRead'/>
                             )
                         })
                         : null
                     }
                 </ul>
-
             </div>
         </div>
     )

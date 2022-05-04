@@ -180,7 +180,7 @@ form img {
   margin-bottom: 2rem;
 }
 
-.volume .imgeContainer img {
+.volume .volumeList .imgContainer img {
   border: 1px solid #757b80;
 }
 
@@ -283,25 +283,37 @@ form img {
 
 /* my library */
 .myLibrary ul {
-  /* display: flex; */
+  display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   border: 1px solid black;
   margin: 1.5rem 0;
   gap: 30px;
+  min-height: 200px;
 }
 
-.bookCard {
-  border: 1px dotted red;
+/* book list */
+.bookList {
   width: 200px;
-  display: inline-block;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
 }
 
-.bookCard img {
-  width: 100%;
+.bookList .imgContainer {
+  display: flex;
 }
 
-.bookCard p {
+.bookList a {
+  margin: 0 auto;
+}
+.bookList a img {
+  max-height: 170px;
+}
+
+.bookList p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

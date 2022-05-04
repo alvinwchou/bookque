@@ -30,7 +30,7 @@ export default function VolumeApiCall() {
         <section className="volume">
             <div className="wrapper">
                 <Header />
-                <ul>
+                <ul className="volumeList">
                     {volumeResults.map((volumeResult) => {
                         console.log(volumeResult);
                         return (
