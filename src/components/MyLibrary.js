@@ -1,6 +1,6 @@
 // myLibrary.js
 
-import { getDatabase, onValue, ref } from "firebase/database";
+import { getDatabase, onValue, ref, remove } from "firebase/database";
 import { useEffect, useState } from "react"
 import firebase from "../firebase";
 import BookList from "./BookList";
@@ -41,6 +41,12 @@ export default function MyLibrary() {
         })
     }, [])
 
+    const handleRemove = (bookId) => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `/${bookId}`)
+        remove(dbRef)
+    }
+
     return (
         <div className="myLibrary">
             <div className="wrapper">
@@ -51,7 +57,7 @@ export default function MyLibrary() {
                     {myBooks.toRead
                         ? myBooks.toRead.map((eachBook) => {
                             return (
-                                <BookList book={eachBook} label='toRead'/>
+                                <BookList book={eachBook} label='toRead' handleOption={handleRemove}/>
                             )
                         })
                         : null
