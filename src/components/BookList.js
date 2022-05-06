@@ -5,7 +5,6 @@ export default function BookList({ book, label }) {
 
     const handleClick = (e) => {
         console.log(e.target.value);
-        console.log(e);
         console.log(label);
         // props.handleOption()
     }

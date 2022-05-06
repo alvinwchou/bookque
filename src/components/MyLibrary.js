@@ -41,10 +41,17 @@ export default function MyLibrary() {
         })
     }, [])
 
-    const handleRemove = (bookId) => {
+    const handleRemove = (bookId,currentCategory, newCategory) => {
         const database = getDatabase(firebase);
         const dbRef = ref(database, `/${bookId}`)
+        //make a copy of data to new category
+        const myLibraryData = 
+        dbRef.currentCategory
+
+        //remove from category
         remove(dbRef)
+        //add to new category
+
     }
 
     return (
