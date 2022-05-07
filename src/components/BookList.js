@@ -1,12 +1,13 @@
 // BookList.js
 import { Link } from "react-router-dom"
 
-export default function BookList({ book, label }) {
+export default function BookList({ book, label, handleOption }) {
 
     const handleClick = (e) => {
         console.log(e.target.value);
         console.log(label);
-        // props.handleOption()
+        console.log(book.id)
+        handleOption(book.id, label, e.target.value)
     }
     return (
         <li className="bookList">

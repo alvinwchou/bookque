@@ -1,6 +1,6 @@
 // myLibrary.js
 
-import { getDatabase, onValue, ref, remove } from "firebase/database";
+import { getDatabase, onValue, ref, remove, set } from "firebase/database";
 import { useEffect, useState } from "react"
 import firebase from "../firebase";
 import BookList from "./BookList";
@@ -41,15 +41,25 @@ export default function MyLibrary() {
         })
     }, [])
 
-    const handleRemove = (bookId,currentCategory, newCategory) => {
+    const handleRemove = (bookId, category, newCategory) => {
         const database = getDatabase(firebase);
         const dbRef = ref(database, `/${bookId}`)
         //make a copy of data to new category
-        const myLibraryData = 
-        dbRef.currentCategory
+        onValue(dbRef, (res) => {
+            const data = res.val()
+            console.log(data[category])
+            const myLibraryData = {
+                [newCategory] : data[category]
+            }
+            console.log(myLibraryData);
+
+            set(dbRef, myLibraryData)
+            
+
+        })
 
         //remove from category
-        remove(dbRef)
+        // remove(dbRef) 
         //add to new category
 
     }
@@ -76,7 +86,7 @@ export default function MyLibrary() {
                     {myBooks.fav
                         ? myBooks.fav.map((eachBook) => {
                             return (
-                                <BookList book={eachBook} label='fav'/>
+                                <BookList book={eachBook} label='fav' handleOption={handleRemove}/>
                             )
                         })
                         : null
@@ -88,7 +98,7 @@ export default function MyLibrary() {
                     {myBooks.haveRead
                         ? myBooks.haveRead.map((eachBook) => {
                             return (
-                                <BookList book={eachBook} label='haveRead'/>
+                                <BookList book={eachBook} label='haveRead' handleOption={handleRemove}/>
                             )
                         })
                         : null
