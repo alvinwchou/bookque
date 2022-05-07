@@ -35,6 +35,7 @@ export default function BookApiCall() {
                 authors: bookResults.authors,
             }
         };
+        console.log('BookAPICall', myLibraryData);
         set(dbRef, myLibraryData)
     };
 

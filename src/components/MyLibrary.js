@@ -1,12 +1,13 @@
 // myLibrary.js
 
-import { getDatabase, onValue, ref, remove, set } from "firebase/database";
+import { getDatabase, onValue, ref, remove, set, update, get } from "firebase/database";
 import { useEffect, useState } from "react"
 import firebase from "../firebase";
 import BookList from "./BookList";
 import Header from "./Header";
 
 export default function MyLibrary() {
+    console.log('MyLibrary Component');
     const [myBooks, setMyBooks] = useState({});
 
     useEffect(() => {
@@ -42,26 +43,40 @@ export default function MyLibrary() {
     }, [])
 
     const handleRemove = (bookId, category, newCategory) => {
+        console.log('handleRemove');
         const database = getDatabase(firebase);
         const dbRef = ref(database, `/${bookId}`)
         //make a copy of data to new category
-        onValue(dbRef, (res) => {
-            const data = res.val()
-            console.log(data[category])
-            const myLibraryData = {
-                [newCategory] : data[category]
-            }
-            console.log(myLibraryData);
+        // onValue(dbRef, (res) => {
+        //     const data = res.val()
+        //     console.log(data[category])
+        //     const myLibraryData = {
+        //         [newCategory] : data[category]
+        //     }
+        //     console.log('New data push to db', myLibraryData);
 
-            set(dbRef, myLibraryData)
+        //     set(dbRef, myLibraryData)
             
 
-        })
+        // })
 
-        //remove from category
-        // remove(dbRef) 
-        //add to new category
-
+        if (newCategory == 'remove') {
+            remove(dbRef) // remove from db
+        } else {
+            // change property name to new category name
+            get(dbRef)
+            .then( (res) => {
+                console.log(res.val())
+                const data = res.val();
+                console.log(data);
+                
+                const myLibraryData = {
+                    [newCategory] : data[category]
+                }
+                console.log('New data push to db', myLibraryData);
+                set(dbRef, myLibraryData)
+            })
+        }
     }
 
     return (

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 export default function BookList({ book, label, handleOption }) {
 
     const handleClick = (e) => {
+        console.log('BOOKLIST HANDLCLICK');
         console.log(e.target.value);
         console.log(label);
         console.log(book.id)
