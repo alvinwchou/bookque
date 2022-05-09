@@ -43,22 +43,9 @@ export default function MyLibrary() {
     }, [])
 
     const handleRemove = (bookId, category, newCategory) => {
-        console.log('handleRemove');
+
         const database = getDatabase(firebase);
         const dbRef = ref(database, `/${bookId}`)
-        //make a copy of data to new category
-        // onValue(dbRef, (res) => {
-        //     const data = res.val()
-        //     console.log(data[category])
-        //     const myLibraryData = {
-        //         [newCategory] : data[category]
-        //     }
-        //     console.log('New data push to db', myLibraryData);
-
-        //     set(dbRef, myLibraryData)
-            
-
-        // })
 
         if (newCategory == 'remove') {
             remove(dbRef) // remove from db
@@ -66,14 +53,12 @@ export default function MyLibrary() {
             // change property name to new category name
             get(dbRef)
             .then( (res) => {
-                console.log(res.val())
                 const data = res.val();
-                console.log(data);
                 
                 const myLibraryData = {
                     [newCategory] : data[category]
                 }
-                console.log('New data push to db', myLibraryData);
+
                 set(dbRef, myLibraryData)
             })
         }
@@ -119,6 +104,8 @@ export default function MyLibrary() {
                         : null
                     }
                 </ul>
+
+                <button onClick="location.href ='/'">Test</button>
             </div>
         </div>
     )

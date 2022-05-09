@@ -4,12 +4,15 @@ import axios from "axios"
 import { useParams, Link } from "react-router-dom";
 import Header from "./Header";
 import firebase from "../firebase";
-import { getDatabase, ref, set } from 'firebase/database'
+import { get, getDatabase, ref, set } from 'firebase/database'
 
 
 export default function BookApiCall() {
     const [bookResults, setBookResults] = useState([]);
-    const [showLibraryOptions, setShowLibraryOptions] = useState(false)
+    const [showLibraryOptions, setShowLibraryOptions] = useState(false);
+
+    //
+    const [alreadyAdded, setAlreadyAdded] = useState(true);
 
     const {bookId: book_Id} = useParams();
 
@@ -21,6 +24,13 @@ export default function BookApiCall() {
             console.log(results.data.volumeInfo);
             setBookResults(results.data.volumeInfo)
         })
+
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `${book_Id}`);
+
+        // check if the book id already exists in the db
+        get(dbRef)
+            .then((res) => res.val() ? setAlreadyAdded(true) : setAlreadyAdded(false))
     },[book_Id])
 
     const handleClick = (e) => {
@@ -31,12 +41,13 @@ export default function BookApiCall() {
             [e.target.value]: {
                 id: book_Id,
                 title: bookResults.title,
-                image: bookResults.imageLinks.thumbnail,
+                image: bookResults.imageLinks ? bookResults.imageLinks.thumbnail : null,
                 authors: bookResults.authors,
             }
         };
-        console.log('BookAPICall', myLibraryData);
-        set(dbRef, myLibraryData)
+
+        set(dbRef, myLibraryData);
+        setAlreadyAdded(true);
     };
 
     const handleAddLibraryClick = () => {
@@ -72,15 +83,18 @@ export default function BookApiCall() {
                             : null
                         }</p>
 
-
-                        {showLibraryOptions
-                            ? <div>
-                                <button value="toRead" onClick={handleClick}><span className="addBlue">+</span> Add to read</button>
-                                <button value="fav" onClick={handleClick}><span className="addBlue">+</span> Add to fav</button>
-                                <button value="haveRead" onClick={handleClick}><span className="addBlue">+</span> Add to have read</button>
-                            </div>
-                            : <button onClick={handleAddLibraryClick}><span className="addBlue">+</span> Add to my library</button>
+                        {/* check if the book has already been added */}
+                        {alreadyAdded
+                            ? <p className="inLibrary">Book is in your <Link to='/myLibrary'>Library</Link></p>
+                            : showLibraryOptions
+                                ? <div>
+                                    <button value="toRead" onClick={handleClick}><span className="addBlue">+</span> Add to read</button>
+                                    <button value="fav" onClick={handleClick}><span className="addBlue">+</span> Add to fav</button>
+                                    <button value="haveRead" onClick={handleClick}><span className="addBlue">+</span> Add to have read</button>
+                                </div>
+                                : <button onClick={handleAddLibraryClick}><span className="addBlue">+</span> Add to my library</button>
                         }
+
                         
                         <div className="textContainer">
                             <p>ISBN: 

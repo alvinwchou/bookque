@@ -21,6 +21,8 @@ a:focus {
   text-decoration: underline;
 }
 
+button {cursor: pointer;}
+
 .volume,
 .book,
 .myLibrary {
@@ -89,7 +91,6 @@ form a {
 form button {
   border: none;
   background-color: rgb(34, 48, 241);
-  cursor: pointer
 }
 
 form img {
@@ -262,12 +263,16 @@ form img {
   line-height: 1.5rem;
 }
 
+.book .inLibrary {
+    margin-top: 1.5rem;
+    padding: 0 0.5rem;
+}
+
 .book .overview button {
   background-color: transparent;
   border: 1px solid #757b80;
   border-radius: 15px;
   padding: 0.2rem 0.5rem;
-  cursor: pointer;
   margin-top: 1.5rem;
 }
 
@@ -282,6 +287,11 @@ form img {
 }
 
 /* my library */
+.myLibrary h2 {
+  text-align: center;
+  padding-top: 1rem;
+}
+
 .myLibrary ul {
   display: flex;
   flex-wrap: wrap;
@@ -306,19 +316,41 @@ form img {
   position: relative;
 }
 
-.bookList .options:hover .optionsDropdown{
-  height: auto;
+.bookList .options .addBlue{
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bookList .options .addBlue:hover,
+.bookList .options .addBlue:focus {
+  animation: bounce 1s infinite linear;
 }
 
 .bookList .optionsDropdown {
-  background-color: #000;
+  background-color: #c1d9ff;
   min-height: auto;
   border: none;
-  /* height: 0; */
   overflow: hidden;
   position: absolute;
   display: block;
   margin: 0;
+  width: 100%;
+  
+}
+
+.showDropdown {
+  height: auto;
+}
+
+.hideDropdown {
+  height: 0;
+}
+
+.bookList .optionsDropdown li {
+  margin: 10px 5px;
+}
+
+.bookList .optionsDropdown button {
   width: 100%;
 }
 
@@ -333,8 +365,15 @@ form img {
   max-height: 170px;
 }
 
-.bookList p {
+.bookList .bookInfo>p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* annimations */
+@keyframes bounce {
+  50% {
+    transform: translateY(-5px);
+  }
 }

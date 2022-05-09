@@ -22,7 +22,7 @@ export default function VolumeApiCall() {
             console.log(results);
             setVolumeResults(results.data.items)
         }).catch((err) => {
-            console.log(err)
+            alert(err)
         })
     }, [query])
 
@@ -31,60 +31,68 @@ export default function VolumeApiCall() {
             <div className="wrapper">
                 <Header />
                 <ul className="volumeList">
-                    {volumeResults.map((volumeResult) => {
-                        console.log(volumeResult);
-                        return (
-                            <li key={volumeResult.id}>
-                                <div className="imgContainer">
-                                    {volumeResult.volumeInfo.imageLinks // check for image
-                                        ? <Link to={`/book=${volumeResult.id}`}>
-                                            <img src={volumeResult.volumeInfo.imageLinks.thumbnail} alt={`Book cover of ${volumeResult.volumeInfo.title}`} />
-                                        </Link>
-                                        : <div className="noImage">
-                                            <p>No image available</p>
+                    {volumeResults // check if returned with book information
+                            ? (volumeResults.map((volumeResult) => {
+                                console.log(volumeResult);
+                                return (
+                                    <li key={volumeResult.id}>
+                                        <div className="imgContainer">
+                                            {volumeResult.volumeInfo.imageLinks // check for image
+                                                ? <Link to={`/book=${volumeResult.id}`}>
+                                                    <img src={volumeResult.volumeInfo.imageLinks.thumbnail} alt={`Book cover of ${volumeResult.volumeInfo.title}`} />
+                                                </Link>
+                                                : <div className="noImage">
+                                                    <p>No image available</p>
+                                                </div>
+                                            }
                                         </div>
-                                    }
-                                </div>
-                                <div className="textContainer">
-                                    <div className="title">
-                                        <Link to={`/book=${volumeResult.id}`}>
-                                            <h2>
-                                                {volumeResult.volumeInfo.title}
-                                                {volumeResult.volumeInfo.subtitle // check for subtitle
-                                                    ? `: ${volumeResult.volumeInfo.subtitle}`
+                                        <div className="textContainer">
+                                            <div className="title">
+                                                <Link to={`/book=${volumeResult.id}`}>
+                                                    <h2>
+                                                        {volumeResult.volumeInfo.title}
+                                                        {volumeResult.volumeInfo.subtitle // check for subtitle
+                                                            ? `: ${volumeResult.volumeInfo.subtitle}`
+                                                            : null
+                                                        }
+                                                    </h2>
+                                                </Link>
+                                            </div>
+                                            <div className="info">
+                                                {volumeResult.volumeInfo.authors // check for authors
+                                                    ? volumeResult.volumeInfo.authors.map((author, index) => {
+                                                        return (
+                                                            <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`}>
+                                                                {
+                                                                    index === 0
+                                                                    ? author
+                                                                    : `, ${author}`
+                                                                }
+                                                            </Link>
+                                                        )
+                                                    })
+                                                    : <p>No author available</p>
+                                                }
+                                                {volumeResult.volumeInfo.publishedDate // check if there is a published date, if so show the year
+                                                    ? <p>&nbsp;· {volumeResult.volumeInfo.publishedDate.substring(0, 4)}</p>
                                                     : null
                                                 }
-                                            </h2>
-                                        </Link>
-                                    </div>
-                                    <div className="info">
-                                        {volumeResult.volumeInfo.authors // check for authors
-                                            ? volumeResult.volumeInfo.authors.map((author, index) => {
-                                                return (
-                                                    <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`}>
-                                                        {
-                                                            index === 0
-                                                            ? author
-                                                            : `, ${author}`
-                                                        }
-                                                    </Link>
-                                                )
-                                            })
-                                            : <p>No author available</p>
-                                        }
-                                        {volumeResult.volumeInfo.publishedDate // check if there is a published date, if so show the year
-                                            ? <p>&nbsp;· {volumeResult.volumeInfo.publishedDate.substring(0, 4)}</p>
-                                            : null
-                                        }
-                                        
-                                    </div>
-                                    <p>{volumeResult.volumeInfo.description}</p>
+                                                
+                                            </div>
+                                            <p>{volumeResult.volumeInfo.description}</p>
+                                        </div>
+                                    </li>
+                                )
+                            }))
+                            : <li className="noResults">
+                                <div>
+                                    <p>Your search -<strong>{query}</strong>- did not match any book results.</p>
+                                    <p>Make sure that all words are spelled correctly, or try a different / more general keywords.</p>
                                 </div>
                             </li>
-                        )
-                    })}
+                    }
                 </ul>
             </div>
         </section>
     )
-}
+}   
