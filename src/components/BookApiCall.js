@@ -87,7 +87,7 @@ export default function BookApiCall() {
                         {alreadyAdded
                             ? <p className="inLibrary">Book is in your <Link to='/myLibrary'>Library</Link></p>
                             : showLibraryOptions
-                                ? <div>
+                                ? <div className="libraryOptions">
                                     <button value="toRead" onClick={handleClick}><span className="addBlue">+</span> Add to read</button>
                                     <button value="fav" onClick={handleClick}><span className="addBlue">+</span> Add to fav</button>
                                     <button value="haveRead" onClick={handleClick}><span className="addBlue">+</span> Add to have read</button>
