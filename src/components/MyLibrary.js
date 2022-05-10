@@ -104,8 +104,6 @@ export default function MyLibrary() {
                         : null
                     }
                 </ul>
-
-                <button onClick="location.href ='/'">Test</button>
             </div>
         </div>
     )

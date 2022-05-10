@@ -53,6 +53,10 @@ button {cursor: pointer;}
   margin-top: 30vh;
 }
 
+.landing form {
+  padding: 0 15px;
+}
+
 .landing img {
   width: 80%;
 }
@@ -375,5 +379,18 @@ form img {
 @keyframes bounce {
   50% {
     transform: translateY(-5px);
+  }
+}
+
+
+@media (max-width: 950px) { 
+  .myLibrary ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    margin: 1.5rem 0;
+    gap: 30px;
+    min-height: 200px;
   }
 }
