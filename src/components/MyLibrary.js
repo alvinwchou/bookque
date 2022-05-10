@@ -1,6 +1,6 @@
 // myLibrary.js
 
-import { getDatabase, onValue, ref, remove, set, update, get } from "firebase/database";
+import { getDatabase, onValue, ref, remove, set, get } from "firebase/database";
 import { useEffect, useState } from "react"
 import firebase from "../firebase";
 import BookList from "./BookList";
@@ -47,7 +47,7 @@ export default function MyLibrary() {
         const database = getDatabase(firebase);
         const dbRef = ref(database, `/${bookId}`)
 
-        if (newCategory == 'remove') {
+        if (newCategory === 'remove') {
             remove(dbRef) // remove from db
         } else {
             // change property name to new category name
