@@ -4,6 +4,7 @@ import VolumeApiCall from './components/VolumeApiCall';
 import BookApiCall from './components/BookApiCall';
 import {Routes, Route} from 'react-router-dom'
 import MyLibrary from './components/MyLibrary';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path='/myLibrary' element={<MyLibrary/>} />
       </Routes>
 
+    <Footer />
     </div>
   );
 }

@@ -43,6 +43,8 @@ button {cursor: pointer;}
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 /* landing component */
@@ -375,6 +377,11 @@ form img {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* footer */
+footer p {
+  font-size: 0.8rem;
 }
 
 /* annimations */
