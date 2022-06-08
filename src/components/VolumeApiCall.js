@@ -84,7 +84,7 @@ export default function VolumeApiCall() {
                             }))
                             : <li className="noResults">
                                 <div>
-                                    <p>Your search -<strong>{query}</strong>- did not match any book results.</p>
+                                <p>Your search -<strong>{decodeURIComponent(query)}</strong>- did not match any book results.</p>
                                     <p>Make sure that all words are spelled correctly, or try a different / more general keywords.</p>
                                 </div>
                             </li>

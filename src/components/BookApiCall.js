@@ -95,7 +95,7 @@ export default function BookApiCall() {
 
                         
                         <div className="textContainer">
-                            <p>ISBN: 
+                            <p>ISBN:&nbsp;
                                 {bookResults.industryIdentifiers // check if there are ISBN numbers
                                     ? bookResults.industryIdentifiers.map((eachIdentifier) => {
                                         return (
@@ -105,7 +105,10 @@ export default function BookApiCall() {
                                     : ' Unavailable'
                                 }
                             </p>
-                            <p>Category: {bookResults.categories ? bookResults.categories[0] : 'Unavailable'}</p>
+                            <p>Category:&nbsp;
+                                {bookResults.categories
+                                ? <Link to={`/search=${encodeURIComponent(encodeURIComponent(`subject:"${bookResults.categories[0]}"`))}`}>{bookResults.categories[0]}</Link>
+                                : 'Unavailable'}</p>
                             <p>Page count: {bookResults.pageCount ? bookResults.pageCount : 'Unavailable'}</p>
                             <p>{bookResults.description}</p>
                         </div>
