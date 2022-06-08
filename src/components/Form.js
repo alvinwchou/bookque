@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import magnifier from '../assets/magnifying-glass-solid.svg';
 
 export default function Form() {
-    const [form, setFrom] = useState(null);
+    const [form, setFrom] = useState('');
 
     const handleChange = (e) => {
         setFrom(e.target.value)

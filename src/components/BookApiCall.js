@@ -20,8 +20,6 @@ export default function BookApiCall() {
         axios({
             url: `https://www.googleapis.com/books/v1/volumes/${book_Id}`
         }).then((results) => {
-            console.log(results);
-            console.log(results.data.volumeInfo);
             setBookResults(results.data.volumeInfo)
         })
 
@@ -70,7 +68,7 @@ export default function BookApiCall() {
                         <h3>{bookResults.subtitle}</h3>
                         <p>by {bookResults.authors.map((author, index) => {
                             return (
-                                <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`}>
+                                <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`} key={index}>
                                     {index === 0
                                         ? author 
                                         : `, ${author}`

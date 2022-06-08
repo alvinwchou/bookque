@@ -19,7 +19,6 @@ export default function VolumeApiCall() {
                 printType: 'books'
             }
         }).then((results) => {
-            console.log(results);
             setVolumeResults(results.data.items)
         }).catch((err) => {
             alert(err)
@@ -33,7 +32,6 @@ export default function VolumeApiCall() {
                 <ul className="volumeList">
                     {volumeResults // check if returned with book information
                             ? (volumeResults.map((volumeResult) => {
-                                console.log(volumeResult);
                                 return (
                                     <li key={volumeResult.id}>
                                         <div className="imgContainer">
@@ -62,7 +60,7 @@ export default function VolumeApiCall() {
                                                 {volumeResult.volumeInfo.authors // check for authors
                                                     ? volumeResult.volumeInfo.authors.map((author, index) => {
                                                         return (
-                                                            <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`}>
+                                                            <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`} key={index}>
                                                                 {
                                                                     index === 0
                                                                     ? author
