@@ -14,8 +14,10 @@ html { font-size: 125%;}
 
 ul { list-style: none;}
 
-a { text-decoration: none; /* darkmode color: #8ab4f8 */}
-
+a {
+  text-decoration: none;
+  color: rgb(34, 48, 241);
+}
 a:hover,
 a:focus {
   text-decoration: underline;
@@ -28,9 +30,6 @@ button {cursor: pointer;}
 .myLibrary {
   width: 100%;
   min-height: 100vh;
-  /* darkmode
-  background-color: #202124;
-  color: #e8eaed; */
 }
 
 .wrapper {
@@ -69,10 +68,6 @@ button {cursor: pointer;}
 
 .landing p {
   margin: 0.5rem; 
-}
-
-.landing a {
-  color: rgb(34, 48, 241);
 }
 
 /* form component */
@@ -131,11 +126,6 @@ form img {
 .header .libraryImgContainer img {
   height: 1.5rem;
 }
-
-/* darkmode
-.header a > img {
-  filter: invert(100%) sepia(0%) saturate(25%) hue-rotate(70deg) brightness(108%) contrast(108%);
-} */
 
 .header form {
   width: 1000px;
@@ -384,6 +374,66 @@ footer p {
   font-size: 0.8rem;
 }
 
+footer .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+footer .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+footer .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+footer .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+footer input:checked+.slider {
+  background-color: #2196F3;
+}
+
+footer input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+footer input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+footer .slider.round {
+  border-radius: 34px;
+}
+
+footer .slider.round:before {
+  border-radius: 50%;
+}
+
 /* annimations */
 @keyframes bounce {
   50% {
@@ -412,14 +462,52 @@ footer p {
   a, p {
     font-size: 0.75rem;
   }
-
+  
   /* volume api call component */
   .volume ul {
     padding: 1.5rem 0;
   }
-
+  
   /* book api call component */
   .book .overview {
     padding: 1.5rem 0;
   }
 }
+
+/* darkmode */
+.darkModeBase {
+  background-color: #202124;
+  color: #e8eaed;
+}
+
+/* logo and library img */
+img.darkMode {
+  filter: invert(100%) sepia(0%) saturate(25%) hue-rotate(70deg) brightness(108%) contrast(108%);
+}
+
+/* magnifying glass */
+/* form img.darkMode {
+  filter: invert(67%) sepia(31%) saturate(795%) hue-rotate(186deg) brightness(100%) contrast(95%);
+} */
+
+.darkModeAnchor {
+  color: #8ab4f8;
+}
+
+header form.darkMode {
+  background-color: #303134;
+}
+
+form.darkMode {
+  /* background-color: #303134; */
+  /* border: 1px solid #757b80; */
+  /* border-radius: 15px; */
+  /* padding: 0 0.5rem; */
+}
+
+form input.darkMode{
+  border: 2px solid;
+  background-color: transparent;
+  color: #e8eaed;
+}
+
