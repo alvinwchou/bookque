@@ -29,7 +29,7 @@ button {cursor: pointer;}
 .book,
 .myLibrary {
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 1.5rem);
 }
 
 .wrapper {
@@ -383,6 +383,7 @@ footer p {
   font-size: 0.8rem;
 }
 
+/* toggle button provided by w3schools */
 footer .switch {
   position: relative;
   display: inline-block;
@@ -405,7 +406,7 @@ footer .slider {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #757b80;
   -webkit-transition: .4s;
   transition: .4s;
 }
