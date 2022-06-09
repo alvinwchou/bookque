@@ -20,10 +20,10 @@ function App() {
     <div className={`App ${darkMode && 'darkModeBase'}`}>
       
       <Routes>
-        <Route path='/' element={ <Landing darkMode = {darkMode}/> } />
-        <Route path='/search=:title' element={<VolumeApiCall />} />
-        <Route path='/book=:bookId' element={<BookApiCall />} />
-        <Route path='/myLibrary' element={<MyLibrary/>} />
+        <Route path='/' element={ <Landing darkMode = {darkMode}/>} />
+        <Route path='/search=:title' element={<VolumeApiCall darkMode={darkMode}/>} />
+        <Route path='/book=:bookId' element={<BookApiCall darkMode={darkMode}/>} />
+        <Route path='/myLibrary' element={<MyLibrary darkMode={darkMode}/>} />
       </Routes>
 
       <Footer toggleDarkMode={toggleDarkMode} darkMode={darkMode}/>

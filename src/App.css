@@ -370,6 +370,15 @@ form img {
 }
 
 /* footer */
+footer {
+  width: 100%;
+}
+
+footer .wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
 footer p {
   font-size: 0.8rem;
 }
@@ -377,8 +386,10 @@ footer p {
 footer .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 2.5rem;
+  height: 1.1rem;
+  bottom: 0;
+  right: 0;
 }
 
 footer .switch input {
@@ -402,8 +413,8 @@ footer .slider {
 footer .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 0.8rem;
+  width: 0.8rem;
   left: 4px;
   bottom: 4px;
   background-color: white;
@@ -412,11 +423,11 @@ footer .slider:before {
 }
 
 footer input:checked+.slider {
-  background-color: #2196F3;
+  background-color: #8ab4f8;
 }
 
 footer input:focus+.slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #8ab4f8;
 }
 
 footer input:checked+.slider:before {
@@ -439,6 +450,44 @@ footer .slider.round:before {
   50% {
     transform: translateY(-5px);
   }
+}
+
+/* darkmode */
+.darkModeBase {
+  background-color: #202124;
+  color: #e8eaed;
+}
+
+form input.darkMode {
+  border: 2px solid;
+  background-color: transparent;
+  color: #e8eaed;
+}
+
+/* logo and library img */
+img.darkMode {
+  filter: invert(100%) sepia(0%) saturate(25%) hue-rotate(70deg) brightness(108%) contrast(108%);
+}
+
+.darkModeAnchor {
+  color: #8ab4f8;
+}
+
+.header form.darkMode {
+  background-color: #303134;
+}
+
+.header form input.darkMode {
+  border: none;
+}
+
+/* magnifying glass */
+.header form img.darkMode {
+  filter: invert(67%) sepia(31%) saturate(795%) hue-rotate(186deg) brightness(100%) contrast(95%);
+}
+
+.bookList .darkMode {
+  background-color: #303134;
 }
 
 /* media query */
@@ -473,41 +522,3 @@ footer .slider.round:before {
     padding: 1.5rem 0;
   }
 }
-
-/* darkmode */
-.darkModeBase {
-  background-color: #202124;
-  color: #e8eaed;
-}
-
-/* logo and library img */
-img.darkMode {
-  filter: invert(100%) sepia(0%) saturate(25%) hue-rotate(70deg) brightness(108%) contrast(108%);
-}
-
-/* magnifying glass */
-/* form img.darkMode {
-  filter: invert(67%) sepia(31%) saturate(795%) hue-rotate(186deg) brightness(100%) contrast(95%);
-} */
-
-.darkModeAnchor {
-  color: #8ab4f8;
-}
-
-header form.darkMode {
-  background-color: #303134;
-}
-
-form.darkMode {
-  /* background-color: #303134; */
-  /* border: 1px solid #757b80; */
-  /* border-radius: 15px; */
-  /* padding: 0 0.5rem; */
-}
-
-form input.darkMode{
-  border: 2px solid;
-  background-color: transparent;
-  color: #e8eaed;
-}
-

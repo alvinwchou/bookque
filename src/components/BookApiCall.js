@@ -7,7 +7,7 @@ import firebase from "../firebase";
 import { get, getDatabase, ref, set } from 'firebase/database'
 
 
-export default function BookApiCall() {
+export default function BookApiCall({darkMode}) {
     const [bookResults, setBookResults] = useState([]);
     const [showLibraryOptions, setShowLibraryOptions] = useState(false);
 
@@ -55,7 +55,7 @@ export default function BookApiCall() {
     return (
         <div className="book">
             <div className="wrapper">
-                <Header />
+                <Header darkMode={darkMode}/>
                 {bookResults.title
                     ? <div className="overview">
                         {bookResults.imageLinks // check if there is an image
@@ -68,7 +68,7 @@ export default function BookApiCall() {
                         <h3>{bookResults.subtitle}</h3>
                         <p>by {bookResults.authors.map((author, index) => {
                             return (
-                                <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`} key={index}>
+                                <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`} className={darkMode && 'darkModeAnchor'} key={index}>
                                     {index === 0
                                         ? author 
                                         : `, ${author}`
@@ -83,21 +83,33 @@ export default function BookApiCall() {
 
                         {/* check if the book has already been added */}
                         {alreadyAdded
-                            ? <p className="inLibrary">Book is in your <Link to='/myLibrary'>Library</Link></p>
+                            ? <p className="inLibrary">Book is in your <Link to='/myLibrary' className={darkMode && 'darkModeAnchor'} >Library</Link></p>
                             : showLibraryOptions
                                 ? <div className="libraryOptions">
-                                    <button value="toRead" onClick={handleClick}><span className="addBlue">+</span> Add to read</button>
-                                    <button value="fav" onClick={handleClick}><span className="addBlue">+</span> Add to fav</button>
-                                    <button value="haveRead" onClick={handleClick}><span className="addBlue">+</span> Add to have read</button>
+                                    <button value="toRead" onClick={handleClick} className={darkMode && 'darkModeBase'}>
+                                        <span className={darkMode ? 'darkModeAnchor' : 'addBlue'}>+ </span>
+                                        Add to read
+                                    </button>
+                                    <button value="fav" onClick={handleClick} className={darkMode && 'darkModeBase'}>
+                                        <span className={darkMode ? 'darkModeAnchor' : 'addBlue'}>+ </span>
+                                        Add to fav
+                                    </button>
+                                    <button value="haveRead" onClick={handleClick} className={darkMode && 'darkModeBase'}>
+                                        <span className={darkMode ? 'darkModeAnchor' : 'addBlue'}>+ </span>
+                                        Add to have read
+                                    </button>
                                 </div>
-                                : <button onClick={handleAddLibraryClick}><span className="addBlue">+</span> Add to my library</button>
+                                : <button onClick={handleAddLibraryClick} className={darkMode && 'darkModeBase'}>
+                                    <span className={darkMode ? 'darkModeAnchor' : 'addBlue'}>+ </span>
+                                    Add to my library
+                                </button>
                         }
 
                         
                         <div className="textContainer">
                             <p>ISBN:&nbsp;
                                 {bookResults.industryIdentifiers // check if there are ISBN numbers
-                                    ? bookResults.industryIdentifiers.map((eachIdentifier) => {
+                                    ? bookResults.industryIdentifiers.map(eachIdentifier => {
                                         return (
                                             `${eachIdentifier.identifier} `
                                         )
@@ -107,7 +119,7 @@ export default function BookApiCall() {
                             </p>
                             <p>Category:&nbsp;
                                 {bookResults.categories
-                                ? <Link to={`/search=${encodeURIComponent(encodeURIComponent(`subject:"${bookResults.categories[0]}"`))}`}>{bookResults.categories[0]}</Link>
+                                    ? <Link to={`/search=${encodeURIComponent(encodeURIComponent(`subject:"${bookResults.categories[0]}"`))}`} className={darkMode && 'darkModeAnchor'} >{bookResults.categories[0]}</Link>
                                 : 'Unavailable'}</p>
                             <p>Page count: {bookResults.pageCount ? bookResults.pageCount : 'Unavailable'}</p>
                             <p>{bookResults.description}</p>

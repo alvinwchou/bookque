@@ -4,7 +4,7 @@ import axios from "axios"
 import { useParams, Link } from "react-router-dom";
 import Header from './Header'
 
-export default function VolumeApiCall() {
+export default function VolumeApiCall({darkMode}) {
     const [volumeResults, setVolumeResults] = useState([]);
 
     const {title: query} = useParams();
@@ -28,7 +28,7 @@ export default function VolumeApiCall() {
     return (
         <section className="volume">
             <div className="wrapper">
-                <Header />
+                <Header darkMode={darkMode}/>
                 <ul className="volumeList">
                     {volumeResults // check if returned with book information
                             ? (volumeResults.map((volumeResult) => {
@@ -46,7 +46,7 @@ export default function VolumeApiCall() {
                                         </div>
                                         <div className="textContainer">
                                             <div className="title">
-                                                <Link to={`/book=${volumeResult.id}`}>
+                                                <Link to={`/book=${volumeResult.id}`} className={darkMode && 'darkModeAnchor'}>
                                                     <h2>
                                                         {volumeResult.volumeInfo.title}
                                                         {volumeResult.volumeInfo.subtitle // check for subtitle
@@ -60,7 +60,7 @@ export default function VolumeApiCall() {
                                                 {volumeResult.volumeInfo.authors // check for authors
                                                     ? volumeResult.volumeInfo.authors.map((author, index) => {
                                                         return (
-                                                            <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`} key={index}>
+                                                            <Link to={`/search=${encodeURIComponent(encodeURIComponent(`inauthor:"${author}"`))}`} className={darkMode && 'darkModeAnchor'} key={index}>
                                                                 {
                                                                     index === 0
                                                                     ? author

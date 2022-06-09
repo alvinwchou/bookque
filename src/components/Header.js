@@ -4,18 +4,18 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/bookque-transparent.png';
 import library from '../assets/book-bookmark-solid.svg';
 
-export default function Header() {
+export default function Header({darkMode}) {
     return (
         <div className="header">
             <div className="logo">
                 <Link to='/'>
-                    <img src={logo} alt="bookque logo" />
+                    <img className={darkMode && 'darkMode'} src={logo} alt="bookque logo" />
                 </Link>
             </div>
-            <Form />
+            <Form darkMode={darkMode}/>
             <div className="libraryImgContainer">
                 <Link to='/myLibrary'>
-                    <img src={library} alt="My library button" />
+                    <img className={darkMode && 'darkMode'} src={library} alt="My library button" />
                 </Link>
             </div>
         </div>

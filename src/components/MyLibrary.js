@@ -6,7 +6,7 @@ import firebase from "../firebase";
 import BookList from "./BookList";
 import Header from "./Header";
 
-export default function MyLibrary() {
+export default function MyLibrary({darkMode}) {
     console.log('MyLibrary Component');
     const [myBooks, setMyBooks] = useState({});
 
@@ -67,14 +67,19 @@ export default function MyLibrary() {
     return (
         <div className="myLibrary">
             <div className="wrapper">
-                <Header />
+                <Header darkMode={darkMode}/>
                 <h2>My Library</h2>
                 <h3>To read</h3>
                 <ul>
                     {myBooks.toRead
                         ? myBooks.toRead.map((eachBook) => {
                             return (
-                                <BookList book={eachBook} label='toRead' handleOption={handleRemove}/>
+                                <BookList
+                                    book={eachBook}
+                                    label='toRead'
+                                    handleOption={handleRemove}
+                                    darkMode={darkMode}
+                                />
                             )
                         })
                         : null
@@ -86,7 +91,12 @@ export default function MyLibrary() {
                     {myBooks.fav
                         ? myBooks.fav.map((eachBook) => {
                             return (
-                                <BookList book={eachBook} label='fav' handleOption={handleRemove}/>
+                                <BookList
+                                    book={eachBook}
+                                    label='fav'
+                                    handleOption={handleRemove}
+                                    darkMode={darkMode}
+                                />
                             )
                         })
                         : null
@@ -98,7 +108,12 @@ export default function MyLibrary() {
                     {myBooks.haveRead
                         ? myBooks.haveRead.map((eachBook) => {
                             return (
-                                <BookList book={eachBook} label='haveRead' handleOption={handleRemove}/>
+                                <BookList
+                                    book={eachBook}
+                                    label='haveRead'
+                                    handleOption={handleRemove}
+                                    darkMode={darkMode}
+                                />
                             )
                         })
                         : null

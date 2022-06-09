@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"
 
-export default function BookList({ book, label, handleOption }) {
+export default function BookList({ book, label, handleOption, darkMode }) {
     // state for toggling dropdown class
     const [isActive, setIsActive] = useState(false)
 
@@ -22,8 +22,8 @@ export default function BookList({ book, label, handleOption }) {
     return (
         <li className="bookList">
             <div className="options">
-                <p className="addBlue" onClick={handleToggle}>&#x25BC;</p>
-                <ul className={`optionsDropdown ${isActive ? "showDropdown" : "hideDropdown"}`}>
+                <p className={darkMode ? 'darkModeAnchor' : 'addBlue'} onClick={handleToggle}>&#x25BC;</p>
+                <ul className={`optionsDropdown ${isActive ? "showDropdown" : "hideDropdown"} ${darkMode && 'darkMode'}`}>
                     {label === 'toRead'
                         ? null
                         : <li><button value="toRead" onClick={handleOptionsClick}>Move to read</button></li>
@@ -42,7 +42,7 @@ export default function BookList({ book, label, handleOption }) {
 
             <div className="bookInfo">
                 <div className="imgContainer">
-                    <Link to={`/book=${book.id}`}>
+                    <Link to={`/book=${book.id}`} className={darkMode && 'darkModeAnchor'}>
                         {book.image 
                             ? <img src={book.image} alt={`Book cover of ${book.title}`} />
                             : <div className="noImage">
@@ -51,7 +51,7 @@ export default function BookList({ book, label, handleOption }) {
                         }
                     </Link>
                 </div>
-                <p><Link to={`/book=${book.id}`}>
+                <p><Link to={`/book=${book.id}`} className={darkMode && 'darkModeAnchor'}>
                     {book.title}
                 </Link></p>
                 
