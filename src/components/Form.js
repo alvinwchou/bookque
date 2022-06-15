@@ -24,7 +24,7 @@ export default function Form({darkMode}) {
                 className={darkMode && 'darkMode'}
             />
             {/* Link decodes the url, work around for not is double encode */}
-            <Link to={`/search=${encodeURIComponent(encodeURIComponent(form))}`}>
+            <Link to={form ? `/search=${encodeURIComponent(encodeURIComponent(form))}` : '/'}>
                 <button className="imgContainer">
                     <img src={magnifier} alt="search button" className={darkMode && 'darkMode'}/>
                 </button>
